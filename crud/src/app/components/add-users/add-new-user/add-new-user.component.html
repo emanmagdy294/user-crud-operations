@@ -1,1 +1,46 @@
-<p>add-new-user works!</p>
+<section class="container my-3">
+    <strong class="text-center address">
+        {{'users.add' |translate}} </strong>
+    <form [formGroup]='userForm' (ngSubmit)='submitUser(userForm)'>
+        <div class="row gy-2">
+            <div class="col-md-6 col-6">
+                <label for="name">{{"users.name" | translate}} <span class="mx-2 star">*</span></label>
+                <input type="text" (click)='onFocus()'  id="name" class="form-control my-1" formControlName='name'
+                    placeholder='{{"users.name" | translate}}'>
+
+            </div>
+            <div class="col-md-6 col-6">
+                <label for="email">{{"users.email" | translate}} <span class="mx-2 star">*</span></label>
+                <input type="email" (click)='onFocus()'  id="email" class="form-control my-1" formControlName='email'
+                    placeholder='{{"users.email" | translate}}'>
+            </div>
+            <div class="col-md-6 col-6">
+                <label for="phone">{{"users.phone" | translate}} <span class="mx-2 star">*</span></label>
+                <input type="text" id="phone" class="form-control my-1" formControlName='phone'
+                    placeholder='{{"users.phone" | translate}}'>
+            </div>
+            <div class="col-md-6 col-6">
+                <label>{{'users.status' | translate}}<span class="mx-2 star">*</span></label>
+                <fieldset>
+                    <select class="w-100 py-2 text-muted listBox" formControlName="status">
+                        <option [ngValue]="null" hidden>{{'users.status' | translate}}</option>
+                        <option *ngFor="let item of status  ; let i = index">
+                            {{item.type}}
+                        </option>
+                    </select>
+                </fieldset>
+            </div>
+
+        </div>
+
+        <div class="m-auto text-center">
+            <button class="btn commonButton w-100 my-4" type="submit" [disabled]="!userForm.valid">
+                <span>{{"users.send" | translate}}</span>
+            </button>
+
+            <div *ngIf="success" class="mt-3 alert alert-success">
+                <p class="text-center">User added successfully</p>
+            </div>
+        </div>
+    </form>
+</section>

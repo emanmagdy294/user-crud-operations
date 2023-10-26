@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { LaguageService } from './shared/services/language.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
@@ -11,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   title = 'crud';
-  constructor(private router: Router, public _title: Title) {
+  constructor(private router: Router, public _title: Title, public translate: TranslateService) {
   }
 
   ngOnInit(): void {

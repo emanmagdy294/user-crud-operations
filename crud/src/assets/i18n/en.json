@@ -1,7 +1,14 @@
 {
     "users": {
         "users": "Users",
-        "add": "Add user"
+        "add": "Add user",
+        "date": "Date of join",
+        "name": "Name",
+        "email": "Email",
+        "filter": "Filter",
+        "phone": "Phone number",
+        "send": "Send",
+        "status": "Status"
     },
     "register": {
         "register": "Register",

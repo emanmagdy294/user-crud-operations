@@ -1,3 +1,62 @@
-<p>get-users works!</p>
+<section class="container m-auto">
+    <div class="row gy-3">
+        <div class="col-md-3">
+            <div class="allUsers d-flex justify-content-center align-items-center">
+                <div class="text-center">
+                    <img src="assets/images/users.png" class="w-100" alt="users">
+                    <p class="userNumber">{{allUsers.length}}</p>
+                    <p class="requestAddress"> {{'users.users' |translate}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur sunt ratione, ipsam numquam recusandae dolores est, veniam provident rerum repellat facere deserunt necessitatibus fugit in odio maiores sint et, assumenda at nesciunt cupiditate ipsum! Possimus officiis quasi, voluptas quas maiores eligendi? Aut at necessitatibus commodi aliquam eius blanditiis labore distinctio odit est ullam amet neque voluptatem pariatur, in molestiae maxime quod aliquid ea voluptate deleniti voluptatum dignissimos. Reiciendis dolor vero provident repudiandae quibusdam nesciunt officia, blanditiis omnis sed deserunt natus! Odio facilis ut molestiae veritatis, cum sapiente dolore dignissimos incidunt praesentium, obcaecati aspernatur laborum, enim corporis! Saepe ab itaque aliquam.
+    <div class="d-flex mt-4">
+        <div class="w-75">
+            <div class="search">
+                <input type="text" placeholder="{{'users.filter' |translate}}" class="form-control"
+                    [(ngModel)]="dataService">
+            </div>
+        </div>
+
+        <div class="w-25 mx-1">
+            <fieldset>
+                <select class="w-100 py-2 text-muted listBox" id="standard-select" [(ngModel)]="data">
+                    <option>active</option>
+                    <option>soft-deleted</option>
+                </select>
+            </fieldset>
+        </div>
+    </div>
+
+
+    <div class="boxOver mt-4">
+        <div class="tableShadow">
+            <table class="table">
+                <thead class="text-center thead">
+                    <tr>
+                        <th>{{'users.date' | translate}}</th>
+                        <th>{{'users.name' | translate}}</th>
+                        <th>{{'users.email' | translate}}</th>
+                        <th>{{'users.phone' | translate}}</th>
+                        <th>{{'users.status' | translate}}</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of allUsers  |  filter:dataService  | filter:data ; let index=index">
+                        <td>{{item.createdAt | date}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.phone}}</td>
+                        <td>{{item.status}}</td>
+                        <td><i class="fa-regular fa-pen-to-square"></i></td>
+                        <td><i class="fa-solid fa-trash text-danger"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

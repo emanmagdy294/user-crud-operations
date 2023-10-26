@@ -15,3 +15,12 @@ a:hover {
 .navbar a.active {
     color: $secondColor !important;
 }
+
+
+.bg-lang{
+    background-color: transparent;
+    box-shadow: $shadow;
+    border-radius: 8px;
+    padding-block: 10px;
+    padding-inline: 20px;
+}

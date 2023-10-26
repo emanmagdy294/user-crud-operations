@@ -14,4 +14,7 @@ export class Users {
         return this._HttpClient.get<any[]>(environment.baseUrl + `users-crud-operation`)
     }
 
+    addUser(formData: any[]): Observable<any[]> {
+        return this._HttpClient.post<any[]>(environment.baseUrl + 'users-crud-operation', formData);
+    }
 }

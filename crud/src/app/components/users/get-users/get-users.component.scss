@@ -1,0 +1,68 @@
+@import "../.././../../scss/variables";
+
+.commonBgBox {
+  margin-top: 20px;
+  padding: 38px 0px 31px 0px;
+  border-radius: 6px;
+  box-shadow: $shadow;
+}
+
+.allUsers {
+  background-color: #fff;
+  @extend .commonBgBox;
+}
+
+.userNumber {
+  color: $mainColor;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.boxOver {
+  box-shadow: $shadow !important;
+}
+
+i {
+  cursor: pointer;
+}
+
+table {
+  border-radius: 0.7em;
+  border: 1px solid #c4c4c4;
+  box-shadow: 0 0 6px 0 rgba(60, 60, 60, 0.16);
+  overflow-x: auto !important;
+
+  th:nth-child(1) {
+    border-start-start-radius: 10px !important;
+  }
+
+  th:nth-last-child(1) {
+    border-start-end-radius: 10px !important;
+  }
+
+  thead {
+    background-color: $mainColor;
+    color: #ffff;
+    font-family: 'Tajawal' !important;
+
+    th {
+      text-align: center;
+      padding-block: 20px !important;
+    }
+  }
+
+  tbody {
+    td {
+      text-align: center;
+      vertical-align: middle;
+      text-align: center;
+      color: #707070;
+      padding-block: 15px !important;
+    }
+
+    tr {
+      border-bottom: solid .0625rem #c4c4c4;
+    }
+  }
+
+}
