@@ -1,0 +1,10 @@
+{
+    "users": {
+        "users": "Users",
+        "add": "Add user"
+    },
+    "register": {
+        "register": "Register",
+        "login": "Login"
+    }
+}

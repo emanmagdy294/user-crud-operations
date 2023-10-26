@@ -1,0 +1,53 @@
+<nav class="navbar me-auto navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="users"><img src="../../../../assets/images/logo-light.png" class="w-100"
+                alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse  justify-content-between" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="users" routerLinkActive="active">
+                        {{'users.users' |translate}}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="add-user" routerLinkActive="active">
+                        {{'users.add' |translate}}
+                    </a>
+                </li>
+
+            </ul>
+
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <div class="d-flex">
+                    <li class="nav-item"> <a class="nav-link" routerLink="register"
+                            routerLinkActive="active">{{'register.register'
+                            |translate}}</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link"> / </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="login" routerLinkActive="active">{{'register.login'
+                            |translate}}</a>
+                    </li>
+
+                </div>
+
+                <li class="nav-item d-flex align-items-center">
+                    <a (click)="changeCurrentLang('ar')" *ngIf="this.language.source._value === 'en'"
+                        class="d-flex align-items-center" data-bs-toggle="collapse"
+                        aria-label="Toggle navigation">العربية
+                    </a>
+                    <a (click)="changeCurrentLang('en')" *ngIf="this.language.source._value === 'ar'"
+                        class="d-flex align-items-center" data-bs-toggle="collapse" aria-label="Toggle navigation">
+                        English
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

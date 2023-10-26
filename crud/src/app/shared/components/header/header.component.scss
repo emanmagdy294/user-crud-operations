@@ -1,0 +1,17 @@
+@import "../.././../../scss/variables";
+
+a,
+a:hover {
+    text-decoration: none !important;
+    cursor: pointer !important;
+    color: #fff !important;
+}
+
+.navbar {
+    background-color: $mainColor;
+    color: #fff !important;
+}
+
+.navbar a.active {
+    color: $secondColor !important;
+}
