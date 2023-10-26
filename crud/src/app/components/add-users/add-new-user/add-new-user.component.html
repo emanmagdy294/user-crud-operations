@@ -1,31 +1,46 @@
 <section class="container my-3">
-    <strong class="text-center address">
-        {{'users.add' |translate}} </strong>
+    <h1 class="text-center my-4 address">
+        {{'users.add' |translate}} </h1>
     <form [formGroup]='userForm' (ngSubmit)='submitUser(userForm)'>
         <div class="row gy-2">
-            <div class="col-md-6 col-6">
+            <div class="col-md-6 col-12">
                 <label for="name">{{"users.name" | translate}} <span class="mx-2 star">*</span></label>
-                <input type="text" (click)='onFocus()'  id="name" class="form-control my-1" formControlName='name'
+                <input type="text" (click)='onFocus()' id="name" class="form-control my-1" formControlName='name'
                     placeholder='{{"users.name" | translate}}'>
-
+                <div *ngIf="users['name'].touched && users['name'].invalid" class="text-danger">
+                    <div *ngIf="users['name'].errors && users['name'].errors['required']">
+                        {{"users.required" | translate}}
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 col-6">
+            <div class="col-md-6 col-12">
                 <label for="email">{{"users.email" | translate}} <span class="mx-2 star">*</span></label>
-                <input type="email" (click)='onFocus()'  id="email" class="form-control my-1" formControlName='email'
+                <input type="email" (click)='onFocus()' id="email" class="form-control my-1" formControlName='email'
                     placeholder='{{"users.email" | translate}}'>
             </div>
-            <div class="col-md-6 col-6">
+            <div class="col-md-6 col-12">
                 <label for="phone">{{"users.phone" | translate}} <span class="mx-2 star">*</span></label>
                 <input type="text" id="phone" class="form-control my-1" formControlName='phone'
                     placeholder='{{"users.phone" | translate}}'>
             </div>
-            <div class="col-md-6 col-6">
+            <div class="col-md-6 col-12">
                 <label>{{'users.status' | translate}}<span class="mx-2 star">*</span></label>
                 <fieldset>
                     <select class="w-100 py-2 text-muted listBox" formControlName="status">
                         <option [ngValue]="null" hidden>{{'users.status' | translate}}</option>
                         <option *ngFor="let item of status  ; let i = index">
                             {{item.type}}
+                        </option>
+                    </select>
+                </fieldset>
+            </div>
+            <div class="col-md-6 col-12">
+                <label>{{'users.role' | translate}}<span class="mx-2 star">*</span></label>
+                <fieldset>
+                    <select class="w-100 py-2 text-muted listBox" formControlName="role">
+                        <option [ngValue]="null" hidden>{{'users.role' | translate}}</option>
+                        <option *ngFor="let item of roles  ; let i = index">
+                            {{item.role}}
                         </option>
                     </select>
                 </fieldset>

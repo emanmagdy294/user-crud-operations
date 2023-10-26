@@ -8,10 +8,17 @@
         "filter": "Filter",
         "phone": "Phone number",
         "send": "Send",
-        "status": "Status"
+        "status": "Status",
+        "required": "This field is required",
+        "role": "Type of users",
+        "verify": "Logins",
+        "location": "Registration locations"
     },
     "register": {
         "register": "Register",
-        "login": "Login"
+        "login": "Login",
+        "age": "Age",
+        "password": "Password",
+        "logout": "Logout"
     }
 }

@@ -10,12 +10,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AddNewUserComponent implements OnInit {
   status = [{ type: 'active' }, { type: 'soft-deleted' }];
+  roles = [{ role: 'admin' }, { role: 'basic user' }];
   success: boolean = false
   userForm = new FormGroup({
     name: new FormControl(null, [Validators.required]),
     email: new FormControl(null, [Validators.required]),
     phone: new FormControl(null, [Validators.required]),
     status: new FormControl(null, [Validators.required]),
+    role: new FormControl(null, [Validators.required]),
   })
   timer: any;
   constructor(private _service: Users, private toaster: ToastrService) { }
@@ -36,6 +38,7 @@ export class AddNewUserComponent implements OnInit {
   onFocus(): void {
     this.success = false;
   }
+
   get users() {
     return this.userForm.controls;
   }

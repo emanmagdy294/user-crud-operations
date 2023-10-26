@@ -1,1 +1,51 @@
-<p>register works!</p>
+<section class="container my-3">
+    <h1 class="text-center my-3 address">
+        {{'register.register' |translate}} </h1>
+    <form [formGroup]='registerForm' (ngSubmit)='submitUser(registerForm)'>
+        <div class="row gy-2">
+            <div class="col-md-6 col-12">
+                <label for="name">{{"users.name" | translate}} <span class="mx-2 star">*</span></label>
+                <input type="text" id="name" class="form-control my-1" formControlName='first_name'
+                    placeholder='{{"users.name" | translate}}'>
+                <div *ngIf="users['first_name'].touched && users['first_name'].invalid" class="text-danger">
+                    <div *ngIf="users['first_name'].errors && users['first_name'].errors['required']">
+                        {{"users.required" | translate}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <label for="name">{{"users.name" | translate}} <span class="mx-2 star">*</span></label>
+                <input type="text" id="name" class="form-control my-1" formControlName='last_name'
+                    placeholder='{{"users.name" | translate}}'>
+                <div *ngIf="users['last_name'].touched && users['last_name'].invalid" class="text-danger">
+                    <div *ngIf="users['last_name'].errors && users['last_name'].errors['required']">
+                        {{"users.required" | translate}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <label for="email">{{"users.email" | translate}} <span class="mx-2 star">*</span></label>
+                <input type="email" id="email" class="form-control my-1" formControlName='email'
+                    placeholder='{{"users.email" | translate}}'>
+            </div>
+
+            <div class="col-md-6 col-12">
+                <label for="age">{{"register.age" | translate}} <span class="mx-2 star">*</span></label>
+                <input type="number" id="age" class="form-control my-1" formControlName='age'
+                    placeholder='{{"register.age" | translate}}'>
+            </div>
+
+            <div class="col-md-6 col-12">
+                <label for="password">{{"register.password" | translate}} <span class="mx-2 star">*</span></label>
+                <input type="password" id="password" class="form-control my-1" formControlName='password'
+                    placeholder='{{"register.password" | translate}}'>
+            </div>
+        </div>
+
+        <div class="m-auto text-center">
+            <button class="btn commonButton w-100 my-4" type="submit" [disabled]="!registerForm.valid">
+                <span>{{"users.send" | translate}}</span>
+            </button>
+        </div>
+    </form>
+</section>

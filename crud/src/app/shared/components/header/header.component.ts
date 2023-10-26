@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LaguageService } from '../../services/language.service';
+import { AuthServiceService } from 'src/app/auth/auth-service.service';
 
 @Component({
   selector: 'app-header',
@@ -8,15 +9,32 @@ import { LaguageService } from '../../services/language.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  isLogin: boolean = false;
   language: any;
-  constructor(private _lang: LaguageService,
+  constructor(private _lang: LaguageService, private _AuthService: AuthServiceService,
     public translate: TranslateService) {
     this.language = this._lang.getValue();
+    if (_AuthService.currentUser != null) {
+      this.isLogin = true;
+    }
+    else {
+      this.isLogin = false;
+    }
+    _AuthService.currentUser.subscribe(() => {
+      if (_AuthService.currentUser.getValue() != null) {
+        this.isLogin = true;
+      } else {
+        this.isLogin = false;
+      }
+    })
   }
 
   ngOnInit(): void {
     this.getLanguage();
+  }
+
+  isLogout() {
+    this._AuthService.logout();
   }
 
   useLanguage(language: string): void {

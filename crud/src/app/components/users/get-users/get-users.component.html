@@ -1,5 +1,32 @@
 <section class="container m-auto">
-    <div class="row gy-3">
+    <div class="row align-items-stretch gy-3">
+        <div class="col-md-3">
+            <div class="allUsers d-flex justify-content-center align-items-center">
+                <div class="text-center">
+                    <img src="assets/images/users.png" class="w-100" alt="users">
+                    <p class="userNumber">{{allUsers.length}}</p>
+                    <p class="requestAddress"> {{'users.users' |translate}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="allUsers d-flex justify-content-center align-items-center">
+                <div class="text-center">
+                    <img src="assets/images/locator.png" class="w-50" alt="users">
+                    <p class="userNumber">46</p>
+                    <p class="requestAddress">{{'users.location' |translate}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="allUsers d-flex justify-content-center align-items-center">
+                <div class="text-center">
+                    <img src="assets/images/verify.png" class="w-100" alt="users">
+                    <p class="userNumber">232</p>
+                    <p class="requestAddress"> {{'users.verify' |translate}}</p>
+                </div>
+            </div>
+        </div>
         <div class="col-md-3">
             <div class="allUsers d-flex justify-content-center align-items-center">
                 <div class="text-center">
@@ -11,16 +38,17 @@
         </div>
     </div>
 
-    <div class="d-flex mt-4">
+    <div class="d-flex mt-4 flex-wrap">
         <div class="w-75">
+            {{'users.filter' |translate}} :
             <div class="search">
                 <input type="text" placeholder="{{'users.filter' |translate}}" class="form-control"
                     [(ngModel)]="dataService">
             </div>
         </div>
 
-        <div class="w-25 mx-1">
-            <fieldset>
+        <div class="mx-1">
+            {{'users.status' |translate}} : <fieldset>
                 <select class="w-100 py-2 text-muted listBox" id="standard-select" [(ngModel)]="data">
                     <option>active</option>
                     <option>soft-deleted</option>
@@ -40,6 +68,7 @@
                         <th>{{'users.email' | translate}}</th>
                         <th>{{'users.phone' | translate}}</th>
                         <th>{{'users.status' | translate}}</th>
+                        <th>{{'users.role' | translate}}</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -52,11 +81,93 @@
                         <td>{{item.email}}</td>
                         <td>{{item.phone}}</td>
                         <td>{{item.status}}</td>
-                        <td><i class="fa-regular fa-pen-to-square"></i></td>
-                        <td><i class="fa-solid fa-trash text-danger"></i></td>
+                        <td>{{item.role}}</td>
+                        <td *ngIf="item.role === 'admin'"><i (click)="updateUser(item)" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" class="fa-regular fa-pen-to-square"></i></td>
+                        <td *ngIf="item.role === 'admin'"><i (click)="removeUser(item.id)"
+                                class="fa-solid fa-trash text-danger"></i>
+                        </td>
+                        <td *ngIf="item.role === 'basic user'"></td>
+                        <td *ngIf="item.role === 'basic user'"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+</section>
+
+
+
+
+<!-- Modal update -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="close p-2">
+                    <i class="fa-regular fa-circle-xmark" data-bs-dismiss="modal" aria-label="Close"></i>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]='userForm' (ngSubmit)='submitUser(userForm)'>
+                    <div class="row gy-2">
+                        <div class="col-md-6 col-6">
+                            <label for="name">{{"users.name" | translate}} <span class="mx-2 star">*</span></label>
+                            <input type="text" id="name" class="form-control my-1" formControlName='name'
+                                placeholder='{{"users.name" | translate}}'>
+
+                        </div>
+                        <div class="col-md-6 col-6">
+                            <label for="email">{{"users.email" | translate}} <span class="mx-2 star">*</span></label>
+                            <input type="email" id="email" class="form-control my-1" formControlName='email'
+                                placeholder='{{"users.email" | translate}}'>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            <label for="phone">{{"users.phone" | translate}} <span class="mx-2 star">*</span></label>
+                            <input type="text" id="phone" class="form-control my-1" formControlName='phone'
+                                placeholder='{{"users.phone" | translate}}'>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            <label>{{'users.status' | translate}}<span class="mx-2 star">*</span></label>
+                            <fieldset>
+                                <select class="w-100 py-2 text-muted listBox" formControlName="status">
+                                    <option [ngValue]="null" hidden>{{'users.status' | translate}}</option>
+                                    <option *ngFor="let item of status  ; let i = index">
+                                        {{item.type}}
+                                    </option>
+                                </select>
+                            </fieldset>
+                        </div>
+
+                    </div>
+
+                    <div class="m-auto text-center">
+                        <button class="btn commonButton w-100 my-4" type="submit" [disabled]="!userForm.valid">
+                            <span>{{"users.send" | translate}}</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="m-auto d-flex justify-content-center align-items-center">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </section>

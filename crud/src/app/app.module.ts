@@ -12,6 +12,8 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ModulesModule } from './shared/modules/modules.module';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +23,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
     HeaderComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     ModulesModule,

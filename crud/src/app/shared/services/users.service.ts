@@ -17,4 +17,9 @@ export class Users {
     addUser(formData: any[]): Observable<any[]> {
         return this._HttpClient.post<any[]>(environment.baseUrl + 'users-crud-operation', formData);
     }
+
+    deleteUser(id: number) {
+        return this._HttpClient.delete(environment.baseUrl + `users-crud-operation/${id}`)
+    }
+
 }
